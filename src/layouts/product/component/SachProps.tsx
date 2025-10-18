@@ -1,5 +1,8 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import SachModel from "../../../models/SachModel";
+import {layToanBoSach} from "../../../api/SachAPI";
+import HinhAnhModel from "../../../models/HinhAnhModel";
+import {layToanBoAnhCuaMotSach} from "../../../api/HinhAnhAPI";
 
 interface SachPropsInterface{
     sach: SachModel;
@@ -7,11 +10,40 @@ interface SachPropsInterface{
 
 const SachProps: React.FC<SachPropsInterface> = (props) => {
 
+    const maSach = props.sach.maSach;
+
+    const [danhSachHinhAnh , setDanhSachHinhAnh] = useState<HinhAnhModel[]>([]);
+    const [dangTaiDuLieu, setDangTaiDuLieu] = useState(true);
+    const [baoLoi , setBaoLoi] = useState(null);
+
+
+    useEffect(()=> {
+            layToanBoAnhCuaMotSach(maSach)
+                .then(hinhAnhSachData => {setDanhSachHinhAnh(hinhAnhSachData); setDangTaiDuLieu(false)})
+                .catch(error => setBaoLoi(error.message));
+        },[] //Chỉ gọi một lần
+    )
+
+    if(dangTaiDuLieu){
+        return (
+            <div>
+                <h1>Đang tải dữ liệu</h1>
+            </div>
+        )
+    }
+    if(baoLoi){
+        return (
+            <div>
+                <h1>Gặp lỗi : {baoLoi}</h1>
+            </div>
+        )
+    }
+
     return (
         <div className="col-md-3 mt-2">
             <div className="card">
                 <img
-                    src={require("../../../images/books/buongbodehanhphuc.jpg")}
+                    src={danhSachHinhAnh[0] ? danhSachHinhAnh[0].duLieuAnh : require("../../../images/books/buongbodehanhphuc.jpg")}
                     className="card-img-top"
                     alt={props.sach.tenSach}
                     style={{ height: '200px' }}

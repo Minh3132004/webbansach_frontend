@@ -1,17 +1,5 @@
 import SachModel from "../models/SachModel";
-
-async function request(endpoint:string){
-    //Truy van den endpoint
-    const response = await fetch(endpoint);
-
-    //Neu bi tra ve loi
-    if(!response.ok){
-        throw new Error(response.statusText);
-    }
-
-    //Tra ve Json neu ok
-    return response.json();
-}
+import {my_request} from "./Request";
 
 export async function layToanBoSach() : Promise<SachModel[]>{
     const ketQua : SachModel[] = [];
@@ -20,7 +8,7 @@ export async function layToanBoSach() : Promise<SachModel[]>{
     const endpoint :string = "http://localhost:8080/sach";
 
     //Goi phuong thuc request
-    const response = await request(endpoint)
+    const response = await my_request(endpoint)
 
     //Lay ra json sach
     const responseData = response._embedded.saches;

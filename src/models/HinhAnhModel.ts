@@ -1,10 +1,10 @@
 
 class HinhAnhModel{
-    private maHinhAnh : number;
-    private tenHinhAnh ?: string;
-    private laIcon ?: boolean;
-    private duongDan ?: string;
-    private duLieuAnh ?: string;
+     maHinhAnh : number;
+     tenHinhAnh ?: string;
+     laIcon ?: boolean;
+     duongDan ?: string;
+     duLieuAnh ?: string;
 
     constructor(
          maHinhAnh : number,
