@@ -11,7 +11,7 @@ const Carousel : React.FC = () => {
 
     useEffect(()=> {
             lay3QuyenSachMoiNhat()
-                .then(danhSachSachData => {setDanhSachSach(danhSachSachData) ; setDangTaiDuLieu(false)})
+                .then(danhSachSachData => {setDanhSachSach(danhSachSachData.ketQua) ; setDangTaiDuLieu(false)})
                 .catch(error => setBaoLoi(error.message));
             },[] //Chỉ gọi một lần
     )

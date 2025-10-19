@@ -41,7 +41,7 @@ const CarouselItem : React.FC<CarouselItemProps> = (props) => {
     return (
         <div className="row align-items-center">
                             <div className="col-5 text-center">
-                                <img src={danhSachHinhAnh[0].duLieuAnh} className="float-end" style={{width:'150px'}} />
+                                <img src={danhSachHinhAnh[0] ? danhSachHinhAnh[0].duLieuAnh : require("../../../images/books/buongbodehanhphuc.jpg")} className="float-end" style={{width:'150px'}} />
                             </div>
                             <div className="col-7">
                                 <h5>{props.sach.tenSach}</h5>
