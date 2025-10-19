@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import SachModel from "../../../models/SachModel";
-import {layToanBoSach} from "../../../api/SachAPI";
 import HinhAnhModel from "../../../models/HinhAnhModel";
 import {layToanBoAnhCuaMotSach} from "../../../api/HinhAnhAPI";
 

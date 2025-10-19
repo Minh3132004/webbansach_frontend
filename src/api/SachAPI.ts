@@ -1,24 +1,41 @@
 import SachModel from "../models/SachModel";
 import {my_request} from "./Request";
 
+async function laySach(endpoint : string) : Promise<SachModel[]> {
+    const response = await my_request(endpoint);
+    
+    const responseData = response._embedded.saches;
+    
+    const ketQua: SachModel[] = responseData.map((sach: SachModel) => 
+        new SachModel(
+            sach.maSach,
+            sach.tenSach,
+            sach.tenTacGia,
+            sach.ISBN,
+            sach.moTa,
+            sach.giaNiemYet,
+            sach.giaBan,
+            sach.soLuong,
+            sach.trungBinhXepHang
+        )
+    );
+    
+    console.log(ketQua);
+    
+    return ketQua ;
+}
+
 export async function layToanBoSach() : Promise<SachModel[]>{
-    const ketQua : SachModel[] = [];
 
     //Xac dinh endpoint
     const endpoint :string = "http://localhost:8080/sach";
 
-    //Goi phuong thuc request
-    const response = await my_request(endpoint)
+    return laySach(endpoint);
+}
 
-    //Lay ra json sach
-    const responseData = response._embedded.saches;
+export async function lay3QuyenSachMoiNhat() : Promise<SachModel[]>{
+    
+    const endpoint :string = "http://localhost:8080/sach?sort=maSach,desc&page=0&size=3";
 
-    for(const key in responseData){
-        const sachModel : SachModel = new SachModel(responseData[key].maSach, responseData[key].tenSach , responseData[key].tenTacGia , responseData[key].ISBN , responseData[key].moTa , responseData[key].giaNiemYet , responseData[key].giaBan , responseData[key].soLuong , responseData[key].trungBinhXepHang) ;
-        ketQua.push(sachModel);
-    }
-
-    console.log(ketQua);
-
-    return ketQua ;
+    return laySach(endpoint)
 }

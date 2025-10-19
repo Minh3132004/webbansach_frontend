@@ -17,6 +17,7 @@ const DanhSachSanPham : React.FC = () => {
     },[] //Chỉ gọi một lần
     )
 
+
     if(dangTaiDuLieu){
         return (
             <div>
