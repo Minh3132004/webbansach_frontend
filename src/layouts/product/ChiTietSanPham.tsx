@@ -29,7 +29,6 @@ const ChitietSanPham: React.FC = () => {
     const [dangTaiDuLieu, setDangTaiDuLieu] = useState(true);
     const [baoLoi , setBaoLoi] = useState(null);
 
-
     useEffect(()=> {
             laySachTheoMaSach(maSachNumber)
                 .then(sachData => {setSach(sachData); setDangTaiDuLieu(false)})

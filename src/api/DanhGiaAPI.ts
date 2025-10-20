@@ -1,4 +1,5 @@
 import DanhGiaModel from "../models/DanhGiaModel";
+import NguoiDung from "../models/NguoiDung";
 import { my_request } from "./Request";
 
 async function layDanhGia(endpoint : string) : Promise<DanhGiaModel[]>{
@@ -27,4 +28,26 @@ export async function layToanBoDanhGiaCuaMotSach(maSach : number) : Promise<Danh
     const endpoint :string = `http://localhost:8080/sach/${maSach}/danhSachDanhGia`;
 
     return layDanhGia(endpoint);
+}
+
+export async function layNguoiDungTheoDanhGia(maDanhGia : number) : Promise<NguoiDung> {
+    const endpoint :string = `http://localhost:8080/danh-gia/${maDanhGia}/nguoiDung`;
+
+    const response = await my_request(endpoint);
+
+    const ketQua : NguoiDung = new NguoiDung(
+        response.maNguoiDung,
+        response.hoDem,
+        response.ten,
+        response.tenDangNhap,
+        response.gioiTinh,
+        response.email,
+        response.soDienThoai,
+        response.diaChiMuaHang,
+        response.diaChiGiaoHang,
+        response.matKhau
+    )
+
+    return ketQua;
+
 }
