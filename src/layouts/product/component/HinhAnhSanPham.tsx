@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import HinhAnhModel from "../../../models/HinhAnhModel";
 import {layToanBoAnhCuaMotSach} from "../../../api/HinhAnhAPI";
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import CSS cho carousel
 import { Carousel } from "react-responsive-carousel";
 
 interface HinhAnhSanPham{
@@ -52,32 +53,17 @@ const HinhAnhSanPham: React.FC<HinhAnhSanPham> = (props) => {
     }
 
     return (
-        <div>
-            <div className="text-center border rounded p-3 mb-3 bg-white shadow-sm" style={{minHeight: '500px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                <img 
-                    src={hinhAnhDangChon ? hinhAnhDangChon.duLieuAnh : require("../../../images/books/buongbodehanhphuc.jpg")} 
-                    alt="Ảnh sản phẩm chính" 
-                    className="img-fluid"
-                    style={{maxHeight: '450px', maxWidth: '100%', objectFit: 'contain'}}
-                />
-            </div>
-            <div className="row g-2">
-                {danhSachHinhAnh.map((hinhAnh, index) => (
-                    <div className="col-3" key={index}>
-                        <div 
-                            className={`border rounded overflow-hidden ${hinhAnhDangChon?.duLieuAnh === hinhAnh.duLieuAnh ? 'border-primary border-3' : ''}`}
-                            style={{cursor: 'pointer'}}
-                            onClick={() => chonAnh(hinhAnh)}
-                        >
-                            <img 
-                                src={hinhAnh.duLieuAnh} 
-                                alt={`Thumbnail ${index + 1}`}
-                                className="img-fluid"
-                                style={{width: '100%', height: '80px', objectFit: 'cover'}}
-                            />
-                        </div>
-                    </div>
-                ))}
+        <div className="row">
+            <div className="col-12">
+                <Carousel showArrows={true} showIndicators={true} >
+                    {
+                        danhSachHinhAnh.map((hinhAnh, index)=>(
+                            <div key={index}>
+                                <img src={hinhAnh ? hinhAnh.duLieuAnh : require("../../../images/books/buongbodehanhphuc.jpg")} alt={`${hinhAnh.tenHinhAnh}`} style={{maxWidth:"1000px" , maxHeight:"1000px"}} />
+                            </div>
+                        ))
+                    }
+                </Carousel>
             </div>
         </div>
     );

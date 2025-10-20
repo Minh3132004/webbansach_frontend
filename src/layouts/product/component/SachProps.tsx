@@ -3,6 +3,7 @@ import SachModel from "../../../models/SachModel";
 import HinhAnhModel from "../../../models/HinhAnhModel";
 import {layToanBoAnhCuaMotSach} from "../../../api/HinhAnhAPI";
 import { Link } from "react-router-dom";
+import renderRating from "../../utils/SaoXepHang";
 
 interface SachPropsInterface{
     sach: SachModel;
@@ -55,21 +56,22 @@ const SachProps: React.FC<SachPropsInterface> = (props) => {
                     <h5 className="card-title">{props.sach.tenSach}</h5>
                 </Link>
                     <p className="card-text">{props.sach.moTa}</p>
-                    <div className="price">
-                        <span className="original-price">
-                            <del>{props.sach.giaNiemYet}</del>
+                    <div className="price row">
+                        <span className="original-price col-6">
+                            <del>{props.sach.giaNiemYet?.toLocaleString('vi-VN')} VNĐ</del>
                         </span>
-                        <span className="discounted-price">
-                            <strong>{props.sach.giaBan}</strong>
+                        <span className="discounted-price col-6">
+                            <strong>{props.sach.giaBan?.toLocaleString('vi-VN')} VNĐ</strong>
                         </span>
                     </div>
                     <div className="row mt-2" role="group">
                         <div className="col-6">
-                            <a href="#" className="btn btn-secondary btn-block">
+                            {renderRating(props.sach.trungBinhXepHang || 0)}
+                        </div>
+                        <div className="col-6 text-end">
+                            <a href="#" className="btn btn-secondary btn-block me-2">
                                 <i className="fas fa-heart"></i>
                             </a>
-                        </div>
-                        <div className="col-6">
                             <button className="btn btn-danger btn-block">
                                 <i className="fas fa-shopping-cart"></i>
                             </button>

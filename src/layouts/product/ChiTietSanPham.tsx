@@ -4,6 +4,7 @@ import SachModel from "../../models/SachModel";
 import { laySachTheoMaSach } from "../../api/SachAPI";
 import HinhAnhSanPham from "./component/HinhAnhSanPham";
 import DanhGiaSanPham from "./component/DanhGiaSanPham";
+import renderRating from "../utils/SaoXepHang";
 
 
 
@@ -69,11 +70,9 @@ const ChitietSanPham: React.FC = () => {
                     <h2 className="mb-3">{sach.tenSach}</h2>
                     
                     <div className="d-flex align-items-center mb-3">
-                        <div className="me-3">
-                            <span className="fs-5 fw-bold text-warning">{sach.trungBinhXepHang}</span>
-                            {[...Array(5)].map((_, i) => (
-                                <i key={i} className={`fas fa-star ms-1 ${i < Math.floor(sach.trungBinhXepHang || 0) ? 'text-warning' : 'text-muted'}`}></i>
-                            ))}
+                        <span className="fs-5 fw-bold text-warning me-2">{sach.trungBinhXepHang}</span>
+                        <div className="d-flex align-items-center">
+                            {renderRating(sach.trungBinhXepHang || 0)}
                         </div>
                     </div>
 

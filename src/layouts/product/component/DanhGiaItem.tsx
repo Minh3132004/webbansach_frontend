@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import DanhGiaModel from "../../../models/DanhGiaModel";
 import { layNguoiDungTheoDanhGia } from "../../../api/DanhGiaAPI";
 import NguoiDung from "../../../models/NguoiDung";
+import renderRating from "../../utils/SaoXepHang";
 
 interface DanhGiaItemProps {
     danhGia : DanhGiaModel;
@@ -12,6 +13,7 @@ const DanhGiaItem : React.FC<DanhGiaItemProps> = (props) => {
     const [nguoiDung , setNguoiDung] = useState<NguoiDung | null>(null);
     const [dangTaiDuLieu, setDangTaiDuLieu] = useState(true);
     const [baoLoi , setBaoLoi] = useState(null);
+    
 
     useEffect(()=> {
         layNguoiDungTheoDanhGia(props.danhGia.maDanhGia)
@@ -65,11 +67,7 @@ const DanhGiaItem : React.FC<DanhGiaItemProps> = (props) => {
                             <div className="text-end">
                                 <div className="d-flex align-items-center">
                                     {/* Hiển thị sao */}
-                                    {[...Array(5)].map((_, i) => (
-                                        <i key={i} 
-                                           className={`fas fa-star ${i < props.danhGia.diemXepHang ? 'text-warning' : 'text-muted'}`}
-                                           style={{fontSize: '1rem'}}></i>
-                                    ))}
+                                    {renderRating(props.danhGia.diemXepHang)}
                                 </div>
                             </div>
                         </div>
