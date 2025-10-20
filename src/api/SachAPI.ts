@@ -67,3 +67,35 @@ export async function timKiemSach(tenSach : string , maTheLoaiNumber : number) :
     return laySach(endpoint);
     
 }
+
+export async function laySachTheoMaSach(maSach : number) : Promise<SachModel | null>{
+
+    const endpoint :string = `http://localhost:8080/sach/${maSach}`;
+
+    let ketQua : SachModel;
+
+    try {
+        const response = await my_request(endpoint);
+
+        if(!response || !response.maSach){
+            throw new Error("Không tìm thấy sách");
+        }
+
+        ketQua = new SachModel(
+            response.maSach,
+            response.tenSach,
+            response.tenTacGia,
+            response.ISBN,
+            response.moTa,
+            response.giaNiemYet,
+            response.giaBan,
+            response.soLuong,
+            response.trungBinhXepHang
+        );
+    
+        return ketQua;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}

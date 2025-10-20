@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 interface NavbarProps{
     tuKhoaTimKiem: string;
@@ -32,7 +32,7 @@ function Navbar(props: NavbarProps){
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#">Trang chủ</a>
+                            <NavLink className="nav-link active" aria-current="page" to="/">Trang chủ</NavLink>
                         </li>
                         <li className="nav-item dropdown">
                             <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">

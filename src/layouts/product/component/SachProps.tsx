@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import SachModel from "../../../models/SachModel";
 import HinhAnhModel from "../../../models/HinhAnhModel";
 import {layToanBoAnhCuaMotSach} from "../../../api/HinhAnhAPI";
+import { Link } from "react-router-dom";
 
 interface SachPropsInterface{
     sach: SachModel;
@@ -41,14 +42,18 @@ const SachProps: React.FC<SachPropsInterface> = (props) => {
     return (
         <div className="col-md-3 mt-2">
             <div className="card">
+                <Link to={`/sach/${props.sach.maSach}`}>
                 <img
                     src={danhSachHinhAnh[0] ? danhSachHinhAnh[0].duLieuAnh : require("../../../images/books/buongbodehanhphuc.jpg")}
                     className="card-img-top"
                     alt={props.sach.tenSach}
                     style={{ height: '200px' }}
                 />
+                </Link>
                 <div className="card-body">
+                <Link to={`/sach/${props.sach.maSach}`} style={{textDecoration:'none' , color:'black'}}>
                     <h5 className="card-title">{props.sach.tenSach}</h5>
+                </Link>
                     <p className="card-text">{props.sach.moTa}</p>
                     <div className="price">
                         <span className="original-price">
