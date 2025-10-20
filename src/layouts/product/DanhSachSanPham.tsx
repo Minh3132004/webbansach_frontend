@@ -1,10 +1,14 @@
 import React, {useEffect, useState} from "react";
 import SachModel from "../../models/SachModel";
-import {layToanBoSach} from "../../api/SachAPI";
+import {layToanBoSach, timKiemSach} from "../../api/SachAPI";
 import SachProps from "./component/SachProps";
 import { PhanTrang } from "../utils/PhanTrang";
 
-const DanhSachSanPham : React.FC = () => {
+interface DanhSachSanPhamProps {
+    tuKhoaTimKiem: string;
+}
+
+const DanhSachSanPham : React.FC<DanhSachSanPhamProps> = (props) => {
 
     const [danhSachQuyenSach , setDanhSachQuyenSach] = useState<SachModel[]>([]);
     const [dangTaiDuLieu, setDangTaiDuLieu] = useState(true);
@@ -18,10 +22,17 @@ const DanhSachSanPham : React.FC = () => {
     };
 
     useEffect(()=> {
+        if(props.tuKhoaTimKiem === ''){
         layToanBoSach(trangHienTai-1)
             .then(sachData => {setDanhSachQuyenSach(sachData.ketQua); setDangTaiDuLieu(false);setTongSoTrang(sachData.tongSoTrang)})
             .catch(error => setBaoLoi(error.message));
-    },[trangHienTai] //Chỉ gọi một lần
+        }
+        else{
+            timKiemSach(props.tuKhoaTimKiem)
+                .then(sachData => {setDanhSachQuyenSach(sachData.ketQua); setDangTaiDuLieu(false);setTongSoTrang(sachData.tongSoTrang)})
+                .catch(error => setBaoLoi(error.message));
+        }
+    },[trangHienTai , props.tuKhoaTimKiem] //Chỉ gọi một lần
     )
 
 
@@ -36,6 +47,14 @@ const DanhSachSanPham : React.FC = () => {
         return (
             <div>
                 <h1>Gặp lỗi : {baoLoi}</h1>
+            </div>
+        )
+    }
+
+    if(danhSachQuyenSach.length === 0){
+        return (
+            <div>
+                <h1>Không tìm thấy sách theo yêu cầu</h1>
             </div>
         )
     }
