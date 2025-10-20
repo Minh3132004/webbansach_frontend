@@ -6,6 +6,7 @@ import { PhanTrang } from "../utils/PhanTrang";
 
 interface DanhSachSanPhamProps {
     tuKhoaTimKiem: string;
+    maTheLoaiNumber : number;
 }
 
 const DanhSachSanPham : React.FC<DanhSachSanPhamProps> = (props) => {
@@ -22,17 +23,17 @@ const DanhSachSanPham : React.FC<DanhSachSanPhamProps> = (props) => {
     };
 
     useEffect(()=> {
-        if(props.tuKhoaTimKiem === ''){
+        if(props.tuKhoaTimKiem === '' && props.maTheLoaiNumber == 0){
         layToanBoSach(trangHienTai-1)
             .then(sachData => {setDanhSachQuyenSach(sachData.ketQua); setDangTaiDuLieu(false);setTongSoTrang(sachData.tongSoTrang)})
             .catch(error => setBaoLoi(error.message));
         }
         else{
-            timKiemSach(props.tuKhoaTimKiem)
+            timKiemSach(props.tuKhoaTimKiem , props.maTheLoaiNumber)
                 .then(sachData => {setDanhSachQuyenSach(sachData.ketQua); setDangTaiDuLieu(false);setTongSoTrang(sachData.tongSoTrang)})
                 .catch(error => setBaoLoi(error.message));
         }
-    },[trangHienTai , props.tuKhoaTimKiem] //Chỉ gọi một lần
+    },[trangHienTai , props.tuKhoaTimKiem , props.maTheLoaiNumber] //Chỉ gọi một lần
     )
 
 

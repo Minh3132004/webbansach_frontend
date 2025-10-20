@@ -50,12 +50,18 @@ export async function lay3QuyenSachMoiNhat() : Promise<KetQuaInterface>{
     return laySach(endpoint)
 }
 
-export async function timKiemSach(tenSach : string) : Promise<KetQuaInterface>{
+export async function timKiemSach(tenSach : string , maTheLoaiNumber : number) : Promise<KetQuaInterface>{
 
     let endpoint :string = `http://localhost:8080/sach?sort=maSach,desc&size=8&page=0`;
 
     if(tenSach !== ""){
         endpoint = `http://localhost:8080/sach/search/findByTenSachContaining?sort=maSach,desc&size=8&page=0&tenSach=${tenSach}`;
+    }
+    if (tenSach === '' && maTheLoaiNumber > 0){
+        endpoint = `http://localhost:8080/sach/search/findByDanhSachTheLoai_MaTheLoai?sort=maSach,desc&size=8&page=0&maTheLoai=${maTheLoaiNumber}`;
+    }
+    if (tenSach !== '' && maTheLoaiNumber > 0){
+        endpoint = `http://localhost:8080/sach/search/findByTenSachContainingAndDanhSachTheLoai_MaTheLoai?sort=maSach,desc&size=8&page=0&tenSach=${tenSach}&maTheLoai=${maTheLoaiNumber}`;
     }
 
     return laySach(endpoint);
