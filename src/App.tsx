@@ -6,6 +6,7 @@ import HomePage from "./layouts/homepage/HomePage";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AboutPage from './layouts/about/about';
 import ChitietSanPham from './layouts/product/ChiTietSanPham';
+import DangKyNguoiDung from './user/DangKyNguoiDung';
 
 function App() {
   
@@ -21,6 +22,7 @@ function App() {
                 <Route path='/:maTheLoai' element={<HomePage tuKhoaTimKiem={tuKhoaTimKiem}/>}/>
                 <Route path='/about' element={<AboutPage/>}/>
                 <Route path='/sach/:maSach' element={<ChitietSanPham />}/>
+                <Route path='/dang-ky' element={<DangKyNguoiDung/>}/>
             </Routes>
 
             <Footer/>

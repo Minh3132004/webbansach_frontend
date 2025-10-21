@@ -6,8 +6,8 @@ class NguoiDung {
     gioiTinh : string;
     email : string;
     soDienThoai : string;
-    diaChiMuaHang : string;
-    diaChiGiaoHang : string;
+    diaChiMuaHang ?: string;
+    diaChiGiaoHang ?: string;
     matKhau : string;
 
     constructor(maNguoiDung : number, hoDem : string, ten : string, tenDangNhap : string, gioiTinh : string, email : string, soDienThoai : string, diaChiMuaHang : string, diaChiGiaoHang : string, matKhau : string){
