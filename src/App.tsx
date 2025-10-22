@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AboutPage from './layouts/about/about';
 import ChitietSanPham from './layouts/product/ChiTietSanPham';
 import DangKyNguoiDung from './user/DangKyNguoiDung';
+import KichHoatTaiKhoan from './user/KichHoatTaiKhoan';
 
 function App() {
   
@@ -23,6 +24,7 @@ function App() {
                 <Route path='/about' element={<AboutPage/>}/>
                 <Route path='/sach/:maSach' element={<ChitietSanPham />}/>
                 <Route path='/dang-ky' element={<DangKyNguoiDung/>}/>
+                <Route path='/kich-hoat/:email/:maKichHoat' element={<KichHoatTaiKhoan/>}/>
             </Routes>
 
             <Footer/>
