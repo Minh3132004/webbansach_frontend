@@ -8,6 +8,8 @@ import AboutPage from './layouts/about/about';
 import ChitietSanPham from './layouts/product/ChiTietSanPham';
 import DangKyNguoiDung from './user/DangKyNguoiDung';
 import KichHoatTaiKhoan from './user/KichHoatTaiKhoan';
+import DangNhap from './user/DangNhap';
+import Test from './user/Test';
 
 function App() {
   
@@ -25,6 +27,8 @@ function App() {
                 <Route path='/sach/:maSach' element={<ChitietSanPham />}/>
                 <Route path='/dang-ky' element={<DangKyNguoiDung/>}/>
                 <Route path='/kich-hoat/:email/:maKichHoat' element={<KichHoatTaiKhoan/>}/>
+                <Route path='/dang-nhap' element={<DangNhap/>}/>
+                <Route path='/test' element={<Test/>}/>
             </Routes>
 
             <Footer/>

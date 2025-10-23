@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const DangKyNguoiDung : React.FC = () => {
+const DangKyNguoiDung = () => {
 
     const [tenDangNhap, setTenDangNhap] = useState<string>("");
     const [matKhau, setMatKhau] = useState<string>("");
