@@ -21,7 +21,7 @@ async function laySach(endpoint : string) : Promise<KetQuaInterface> {
             sach.maSach,
             sach.tenSach,
             sach.tenTacGia,
-            sach.ISBN,
+            sach.isbn,
             sach.moTa,
             sach.giaNiemYet,
             sach.giaBan,

@@ -2,7 +2,7 @@ class SachModel{
      maSach: number;
      tenSach?: string; // ?: co the bi Null
      tenTacGia ?: string;
-     ISBN ?: string;
+     isbn ?: string;
      moTa ?: string;
      giaNiemYet ?: number;
      giaBan ?: number;
@@ -12,7 +12,7 @@ class SachModel{
     constructor(maSach: number,
                 tenSach?: string,
                 tenTacGia ?: string,
-                ISBN ?: string,
+                isbn ?: string,
                 moTa ?: string,
                 giaNiemYet ?: number,
                 giaBan ?: number,
@@ -22,7 +22,7 @@ class SachModel{
         this.maSach = maSach;
         this.tenSach = tenSach;
         this.tenTacGia = tenTacGia;
-        this.ISBN = ISBN;
+        this.isbn = isbn;
         this.moTa = moTa;
         this.giaNiemYet = giaNiemYet;
         this.giaBan = giaBan;

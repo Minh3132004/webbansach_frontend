@@ -32,12 +32,12 @@ const DangNhap = () => {
                 loginRequest
             )
         }).then(
-            (response) => {
+            async (response) => {
                 if (response.ok) {
                     return response.json();
                 }
                 else {
-                    throw new Error('Đăng nhập thất bại!')
+                    throw new Error(await response.text())
                 }
             }
         ).then(
@@ -45,7 +45,7 @@ const DangNhap = () => {
                 //Xử lý đăng nhập thành công 
                 const { jwt } = data;
                 //Lưu token vào localStorage hoặc cookie
-                localStorage.setItem("jwt", jwt);
+                localStorage.setItem("token", jwt);
                 //Điều hướng đến trang chính hoặc thực hiện các tác vụ khi đăng nhập thành công
                 setThongBaoDangNhap("Đăng nhập thành công!");
             }
