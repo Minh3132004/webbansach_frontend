@@ -1,4 +1,5 @@
 import React, { FormEvent, useState } from 'react';
+import RequireAdmin from './RequireAdmin';
 
 
 const SachForm: React.FC = () => {
@@ -123,4 +124,6 @@ const SachForm: React.FC = () => {
     )
 }
 
-export default SachForm;
+const SachForm_Admin = RequireAdmin(SachForm);
+
+export default SachForm_Admin;
