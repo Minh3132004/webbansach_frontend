@@ -9,8 +9,9 @@ class NguoiDung {
     diaChiMuaHang ?: string;
     diaChiGiaoHang ?: string;
     matKhau : string;
+    avatar : string;
 
-    constructor(maNguoiDung : number, hoDem : string, ten : string, tenDangNhap : string, gioiTinh : string, email : string, soDienThoai : string, diaChiMuaHang : string, diaChiGiaoHang : string, matKhau : string){
+    constructor(maNguoiDung : number, hoDem : string, ten : string, tenDangNhap : string, gioiTinh : string, email : string, soDienThoai : string, diaChiMuaHang : string, diaChiGiaoHang : string, matKhau : string, avatar : string){
         this.maNguoiDung = maNguoiDung;
         this.hoDem = hoDem;
         this.ten = ten;
@@ -21,6 +22,7 @@ class NguoiDung {
         this.diaChiMuaHang = diaChiMuaHang;
         this.diaChiGiaoHang = diaChiGiaoHang;
         this.matKhau = matKhau;
+        this.avatar = avatar;
     }
 
 }

@@ -11,6 +11,7 @@ const DangKyNguoiDung = () => {
     const [soDienThoai, setSoDienThoai] = useState<string>("");
     const [diaChiMuaHang, setDiaChiMuaHang] = useState<string>("");
     const [diaChiGiaoHang, setDiaChiGiaoHang] = useState<string>("");
+    const [avatar, setAvatar] = useState<File | null>(null);
 
 
     // Kiểm tra tên đăng nhập 
@@ -124,6 +125,10 @@ const DangKyNguoiDung = () => {
         const isKiemTraMatKhauNhapLai = kiemTraMatKhauNhapLai(matKhauNhapLai);
         
         if(isKiemTraEmail && isKiemTraTenDangNhap && isKiemTraMatKhau && isKiemTraMatKhauNhapLai){
+
+            const base64Avatar = avatar ? await getBase64(avatar) : null;
+            console.log("avatar: " + base64Avatar);
+
             const url = "http://localhost:8080/tai-khoan/dang-ky";
             try {
                 const response = await fetch(url , 
@@ -139,7 +144,8 @@ const DangKyNguoiDung = () => {
                             ten : ten,
                             gioiTinh : gioiTinh,
                             email : email,
-                            soDienThoai : soDienThoai
+                            soDienThoai : soDienThoai,
+                            avatar : base64Avatar
                         })
                     }
                 );
@@ -157,6 +163,25 @@ const DangKyNguoiDung = () => {
         
         }
     }
+
+     // XỬ LÝ THAY ĐỔI FILE /////////////////////////////////////////////////////////////////////////////
+    // File change handler
+    const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            const file = e.target.files[0];
+            setAvatar(file);
+        }
+    };
+
+    // Convert file to Base64
+    const getBase64 = (file: File): Promise<string | null> => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result ? (reader.result as string) : null);
+            reader.onerror = (error) => reject(error);
+        });
+    };
 
     return (
         <div className="container">
@@ -202,6 +227,10 @@ const DangKyNguoiDung = () => {
             <div>
                 <label>Số điện thoại : </label>
                 <input type="text" placeholder="Số điện thoại" name="soDienThoai" id="soDienThoai" value={soDienThoai} onChange={(e) => setSoDienThoai(e.target.value)}/>
+            </div>
+            <div>
+                <label>Avatar : </label>
+                <input type="file" accept="image/*" name="avatar" id="avatar" onChange={handleAvatarChange}/>
             </div>
             <div>
                 <button type="submit" onClick={handleDangKy}>Đăng ký</button>

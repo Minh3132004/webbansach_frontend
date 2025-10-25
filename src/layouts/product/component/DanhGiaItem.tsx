@@ -46,9 +46,16 @@ const DanhGiaItem : React.FC<DanhGiaItemProps> = (props) => {
                 <div className="d-flex">
                     {/* Avatar người dùng - Hình tròn lớn bên trái */}
                     <div className="flex-shrink-0 me-3">
-                        <div className="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" 
+                        <div className="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center overflow-hidden" 
                              style={{width: '60px', height: '60px', fontSize: '1.5rem'}}>
-                            <i className="fas fa-user"></i>
+                            {
+                                nguoiDung && nguoiDung.avatar ? (
+                                    <img src={nguoiDung.avatar} alt="Avatar" 
+                                         style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+                                ) : (
+                                    <i className="fas fa-user"></i>
+                                )
+                            }
                         </div>
                     </div>
 

@@ -45,7 +45,8 @@ export async function layNguoiDungTheoDanhGia(maDanhGia : number) : Promise<Nguo
         response.soDienThoai,
         response.diaChiMuaHang,
         response.diaChiGiaoHang,
-        response.matKhau
+        response.matKhau,
+        response.avatar
     )
 
     return ketQua;
